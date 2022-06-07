@@ -77,7 +77,7 @@ To **generate a component manually**
 /* Import of components */
 import { Component } from '@angular/core';
 
-/* Class decorators */
+/* Class decorators, in this case, as we are using a built in decorator named Component, we have to import it*/
 @Component({
   selector: 'app-component-overview',
   templateUrl: './component-overview.component.html',
@@ -102,6 +102,25 @@ It's important to note that the component's stylesheets linked in the component'
 <br>
 
 
+## Modules
+
+Angular uses modules as a way to group components and pass them to the app module. 
+
+Regarding the app document, inside the app folder, the structure goes as follows
+
+  + App folder
+    + Module 1 folder
+      + Component 1 folder
+        + Component.ts
+        + Component.css
+        + Component.html
+        + Tests
+      + Component 2 folder
+      + Module.ts doc
+    + Module 2 folder
+    + Rest of documents
+
+<br>
 
 
 ## [NgModule](https://angular.io/tutorial/toh-pt1)
@@ -199,12 +218,12 @@ Now we can print it by using ***ngFor** in the components HTML file like follows
 ```js
 <ul class="heroes">
 
-    <li *ngFor="let hero of heroes">
+    <li *ngFor="let hero of heroes; let i = index">
 
       /* we use *ngFor and then iterate the array by defining its key and array name */
-
+      /* In case we want to use the index we can access it as shown */
         <button type="button">
-            <span class="badge">{{ hero.id }}</span>
+            <span class="badge">{{ hero.id }}{{ index }}</span>
             <span class="name">{{ hero.name }}</span>
         </button>
 
