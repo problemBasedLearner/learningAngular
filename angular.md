@@ -57,6 +57,7 @@ To **generate a new component**, open the repo in terminal and use the following
 
 ```console
 $ ng generate component 'name of component'
+$ ng g c 'name of component'
 ```
 
 <br>
@@ -104,21 +105,60 @@ It's important to note that the component's stylesheets linked in the component'
 
 ## Modules
 
+Modules generating command 
+
+```console
+$ ng generate module 'name of module'
+```
+
 Angular uses modules as a way to group components and pass them to the app module. 
 
 Regarding the app document, inside the app folder, the structure goes as follows
 
   + App folder
     + Module 1 folder
+      + Module.module.ts doc
       + Component 1 folder
         + Component.ts
         + Component.css
         + Component.html
         + Tests
       + Component 2 folder
-      + Module.ts doc
     + Module 2 folder
     + Rest of documents
+
+It's important to understand the Module's structure because it's crucial to share components inside the app
+
+```js
+// First we import all the angular modules we are using
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+
+// Then we import all the Components that are included in the module
+import { HeroeComponent } from './heroe/heroe.component';
+import { ListadoComponent } from './listado/listado.component';
+
+// We use the NgModule decorator that we imported from Angular in the first step
+@NgModule({
+    // The full module component index
+    declarations: [
+        HeroeComponent,
+        ListadoComponent
+    ],
+    // Everything that we want to use outside the module
+    exports: [
+        ListadoComponent,
+    ],
+    // In imports we place modules we are about to use, both from Angular and our own
+    imports: [
+        // Common module allows the use of ngFor and ngIf among other key functions
+        CommonModule
+    ]
+})
+
+export class HeroesModule {}
+```
+
 
 <br>
 
@@ -158,6 +198,11 @@ import { HeroesComponent } from './heroes/heroes.component';
 })
 export class AppModule { }
 ```
+
+<br>
+
+
+## [Forms Module](https://angular.io/guide/forms-overview)
 
 <br>
 
@@ -249,3 +294,9 @@ Angular has it's own way of dealing with event bindings, the sintax looks like t
 ```html
 <element (eventName)='function(paragram)'></element>
 ```
+
+## [Interfaces]
+
+Interfaces are the Typescript mecanism to define type inside classes. For that the most usefull way to work with them is to generate its own interfaces/ directory and gather them there. 
+
+**Important** remember to import the interfaces everywhere you need them to mantain type

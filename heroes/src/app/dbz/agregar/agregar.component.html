@@ -1,0 +1,16 @@
+<h3>Agregar</h3>
+<hr>
+
+<form (ngSubmit)="agregar()">
+    <input 
+        type="text" 
+        placeholder="Nombre" 
+        name="nombre"
+        [(ngModel)]='nuevo.nombre'
+    >
+    <!-- Value in this case gets associated to the new object we want to create in the main-page.component -->
+
+    <input type="text" placeholder="Poder" name="poder" [(ngModel)]='nuevo.poder'>
+
+    <button type="submit">Agregar</button>
+</form>
