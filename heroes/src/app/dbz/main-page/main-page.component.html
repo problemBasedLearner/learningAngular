@@ -4,14 +4,17 @@
 <div class="row">
     
     <div class="col">
-
+        <!-- Using brackets we define that the variable X in the component has the content of the var X in the Modules component -->
         <app-personajes [personajesArr]="personajesArr"></app-personajes>
        
     </div>
 
     <div class="col">
 
-        <app-agregar [nuevo]="nuevo"></app-agregar>
+        <app-agregar 
+            [nuevo] = "nuevo"
+            (onNuevoPersonaje)="agregarNuevoPersonaje( $event )"
+        ></app-agregar>
 
     </div>
 

@@ -282,8 +282,6 @@ Now we can print it by using ***ngFor** in the components HTML file like follows
 
 ## [*ngIf](https://angular.io/api/common/NgIf)
 
-
-
 <br>
 
 
@@ -295,8 +293,104 @@ Angular has it's own way of dealing with event bindings, the sintax looks like t
 <element (eventName)='function(paragram)'></element>
 ```
 
-## [Interfaces]
+<br>
+
+
+## Interfaces
+
++ [Definition example](./heroes/src/app/dbz/interfaces/dbz.interface.ts)
++ [Application example](./heroes/src/app/dbz/personajes/personajes.component.ts)
 
 Interfaces are the Typescript mecanism to define type inside classes. For that the most usefull way to work with them is to generate its own interfaces/ directory and gather them there. 
 
-**Important** remember to import the interfaces everywhere you need them to mantain type
+**Important** remember to import the interfaces everywhere you need them to mantain type with a code similar to the next
+
+```js
+import { name } from "path to interface file";
+```
+
+<br>
+
+
+## [@input](https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/23639036#overview) 
+
++ [Official documentation](https://angular.io/guide/inputs-outputs)
+
+With the input command we can send variables and info from a **parent component** to a son.
+For that we have to follow few steps
+
+First we have to make an @input in the son to bring an existing info in the parent ex:
+
+```js
+// This array is in parent.component.ts and uses the Personaje interface for typing
+personajesArr: Personaje[] = [
+    {
+      nombre: 'Broli',
+      poder: 123
+    },
+
+    {
+      nombre: 'Brocoli',
+      poder: 12394871212341234
+    },
+  ]
+
+```
+This is the code we use to import it in the son component
+**Important!** We have to import Input from angular and the interface from its directory
+
+```js
+@Input() personajesArr: Personaje[] = [];
+```
+
+Last we have to associate the info in the parent component to it's sons
+
+```html
+<app-personajes [personajesArr]="personajesArr"></app-personajes>
+```
+
+<br>
+
+
+## [@output](https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/23650936#overview)
+
++ [Official documentation](https://angular.io/guide/inputs-outputs)
++ [EventEmiter documentation](https://angular.io/api/core/EventEmitter)
++ [Event Binding documentation](https://angular.io/guide/event-binding-concepts)
+
+@Output is the decorator we use to send info from a child to a parent
+
+For making it work we have to work with it like so, first work on the child.component.ts
+
+First we make sure to create the event we want to output, for that we have to make a few **imports: EventEmiter & Output**. Then we can write a code that follows the next structure:
+
+**@Output() eventName: EventEmitter<Type> = new Eventemitter();**
+
+```js
+@Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
+```
+
+Next we must have a function that generates the output, and for that we can use this structure:
+
+**this.eventName.emit(value);**
+
+```js
+agregar() {
+  this.onNuevoPersonaje.emit(this.nuevo);
+}
+```
+
+Now we switch to the parent component. We have to recieve the value, so we go to the parent.html file and listen to the event
+
+```html
+ <childComponentName 
+            (onNuevoPersonaje)="functionX( $event )"
+        ></childComponentName>
+```
+Like so we are listening to the event to trigger a function to wich we pass the $event paragram containing the info sent from the child, now we are only missing a function to process this info in the parent.component.ts
+
+```js
+functionX( arg: Type ) {
+    /* Add your code here */
+}
+```

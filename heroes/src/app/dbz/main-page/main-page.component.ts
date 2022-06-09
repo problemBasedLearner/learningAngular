@@ -24,7 +24,7 @@ export class MainPageComponent {
     },
 
     {
-      nombre: 'RetardedCat',
+      nombre: 'Anselmo',
       poder: 1
     },
 
@@ -35,5 +35,10 @@ export class MainPageComponent {
     poder: 0
   };
   
+
+  agregarNuevoPersonaje( arg: Personaje ) {
+    console.log(arg);
+    this.personajesArr.push(arg);
+  }
   
 }

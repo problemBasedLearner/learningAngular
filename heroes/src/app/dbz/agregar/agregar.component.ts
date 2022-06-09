@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Personaje } from '../interfaces/dbz.interface';
 
 
@@ -8,25 +8,20 @@ import { Personaje } from '../interfaces/dbz.interface';
 })
 export class AgregarComponent {
 
- 
-  // It's important to mantail type while Input so we generate a interfaces directory and import the class from there
-  @Input() personajesArr: Personaje[] = [];
-
-
   @Input() nuevo: Personaje = {
     nombre: '',
     poder: 0
   };
 
+  @Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
+
   agregar() {
     // We can validate form using code such as the next one
     if ( this.nuevo.nombre.trim().length === 0 ) { return; }
 
-    // We push the new values inside the array
-    this.personajesArr.push( this.nuevo );
-
     console.log(this.nuevo);
-  
+    this.onNuevoPersonaje.emit(this.nuevo);
+    
     // We have to redefine the whole variable, that was previously associated with the form input fields
     this.nuevo = { nombre: '', poder: 0 };
 
@@ -34,3 +29,4 @@ export class AgregarComponent {
  
 
 }
+ 
