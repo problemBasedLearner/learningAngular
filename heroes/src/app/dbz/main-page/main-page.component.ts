@@ -10,6 +10,8 @@ import { Personaje } from "../interfaces/dbz.interface";
 
 export class MainPageComponent {
 
+  
+
   // Now we define an array in wich we are introducing Personaje defined objects
   personajesArr: Personaje[] = [
 
