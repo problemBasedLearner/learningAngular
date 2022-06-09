@@ -153,6 +153,10 @@ import { ListadoComponent } from './listado/listado.component';
     imports: [
         // Common module allows the use of ngFor and ngIf among other key functions
         CommonModule
+    ],
+    // In providers we list all the used services
+    providers: [
+      XXXService
     ]
 })
 
@@ -391,6 +395,7 @@ Like so we are listening to the event to trigger a function to wich we pass the 
 
 ```js
 functionX( arg: Type ) {
-    /* Add your code here */
+  /* Add your code here */
 }
 ```
+
