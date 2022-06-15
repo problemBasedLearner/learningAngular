@@ -157,7 +157,8 @@ import { ListadoComponent } from './listado/listado.component';
     // In providers we list all the used services
     providers: [
       XXXService
-    ]
+    ],
+    
 })
 
 export class HeroesModule {}
