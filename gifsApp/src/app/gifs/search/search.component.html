@@ -1,0 +1,13 @@
+<h5>Buscador </h5>
+<form (ngSubmit)="searchGif()">
+    <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar Gif..."
+        name="topic"
+        [(ngModel)]="searchTopic"
+        #txtBuscar
+    >
+</form>
+
+<p>{{ searchTopic }}</p>
