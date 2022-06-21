@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { SearchGifsResponse, Gif } from '../interfaces/gifs.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GifsService {
 
-  private apiKey            : string = 'Tb51KUh1cZC4Rh1qTbWpd8itCMjYBWTI'
-  private _historialArr     : string[] = []
-  public resultadosPeticion : any[] = [] // TODO cambiar tipo any
+  private apiKey           : string = 'Tb51KUh1cZC4Rh1qTbWpd8itCMjYBWTI'
+  private _historialArr    : string[] = []
+  public resultadosPeticion: Gif[] = [] // TODO cambiar tipo any
 
   // Adding get method to the class we can access the content of the function by calling it as any other class key
   // https://www.youtube.com/watch?v=bl98dm7vJt0
@@ -35,10 +36,11 @@ export class GifsService {
     // In this case we first init the empty variable resultadosPeticion
     // We then make a fetch in the API by using the HTTP Client Module
     // We asign the result value to the vatiable
-    this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=${this.apiKey}&q=${searchTopic}&limit=10`)
-    .subscribe( (resp : any ) => {
-      // console.log( resp )
-      this.resultadosPeticion = resp.data
+    // Instead of typing the function parameter, we type the fetch we are making to specify the incomming response
+    this.http.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=${this.apiKey}&q=${searchTopic}&limit=10`)
+      .subscribe(( resp ) => {
+        console.log( resp )
+        this.resultadosPeticion = resp.data
     })
   }
 }
