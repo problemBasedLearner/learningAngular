@@ -16,6 +16,7 @@ export class SearchComponent {
   constructor( private gifsService: GifsService ) {}
 
   searchGif() {
+    // if the field has content, then...
     if (this.searchTopic.trim() != '') {
       this.gifsService.buscarGifs( this.searchTopic )
       // console.log(this.searchTopic);

@@ -1,1 +1,11 @@
-<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae doloribus vitae consequatur neque amet eum debitis molestias laudantium, laboriosam, quis iste earum sint at maxime totam eius porro dolores et consequuntur id praesentium vel quo. Excepturi omnis facere voluptas amet! Libero repellendus quos doloremque ut necessitatibus possimus nemo voluptatibus vero? Tempora voluptate possimus incidunt, repudiandae quos illum in iste itaque.</p>
+<div class="row">
+	<div *ngFor="let gif of resultados" class="col-md-4 col-sm-6">
+
+    <div class="card">
+        <div class="card-body">
+            <div class="card-text">{{ gif.title }}</div>
+        </div>
+    </div>
+
+	</div>
+</div>
