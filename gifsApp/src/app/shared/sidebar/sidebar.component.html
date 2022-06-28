@@ -5,6 +5,8 @@
     <hr class="text-white">
 
     <div class="list-group list-reset">
-        <a *ngFor="let item of historial" href="#" class="list-group-item list-group-item-action">{{ item }}</a>
+        <a *ngFor="let item of historial"
+           (click)="buscarGifs(item)"
+           class="list-group-item list-group-item-action">{{ item }}</a>
     </div>
 </div><!-- Sidebar End -->
